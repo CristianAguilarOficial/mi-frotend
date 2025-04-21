@@ -31,7 +31,14 @@ export function TasksProvider({ children }) {
     }
   };
   const createTask = async (task) => {
-    const res = await createTaskRequest(task);
+    try {
+      const res = await createTaskRequest(task);
+      // Volver a cargar todas las tareas
+      getTasks();
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
   };
   const deletask = async (id) => {
     try {
@@ -52,6 +59,9 @@ export function TasksProvider({ children }) {
   const updateTask = async (id, task) => {
     try {
       const res = await updateTaskRequest(id, task);
+      // Actualizar la tarea en el estado local
+      setTasks(tasks.map((t) => (t._id === id ? res.data : t)));
+      return res.data;
     } catch (error) {
       console.error(error);
     }
