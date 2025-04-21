@@ -35,6 +35,8 @@ export const AuthProvider = ({ children }) => {
 
       setIsAuthenticated(true);
       setUser(res.data);
+      // Almacenar el token también en localStorage como respaldo
+      localStorage.setItem("isAuthenticated", "true");
     } catch (error) {
       if (Array.isArray(error.response.data)) {
         return setError(error.response.data);
@@ -61,16 +63,18 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function checkLogin() {
       const cookies = Cookies.get();
+      const localAuth = localStorage.getItem("isAuthenticated");
 
-      if (!cookies.token) {
+      if (!cookies.token && !localAuth) {
         setIsAuthenticated(false);
         setLoading(false);
         return setUser(null);
       }
       try {
-        const res = await verifyTokenRequest(cookies.token);
+        const res = await verifyTokenRequest();
         if (!res.data) {
           setIsAuthenticated(false);
+          localStorage.removeItem("isAuthenticated");
           setLoading(false);
           return;
         }
@@ -82,6 +86,7 @@ export const AuthProvider = ({ children }) => {
         console.log(error);
         setIsAuthenticated(false);
         setUser(null);
+        localStorage.removeItem("isAuthenticated");
         setLoading(false);
       }
     }
