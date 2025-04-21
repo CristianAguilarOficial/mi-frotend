@@ -4,7 +4,15 @@ import { useAuth } from "./context/authContext";
 function ProtectedRouter() {
   const { loading, isAuthenticated } = useAuth();
 
-  if (loading) return <h1>loading.....</h1>;
+  useEffect(() => {
+    // Forzar verificación adicional del token cuando se intenta acceder a rutas protegidas
+    if (!loading && !isAuthenticated) {
+      navigate("/login", { replace: true });
+    }
+  }, [loading, isAuthenticated]);
+
+  if (loading)
+    return <h1 className="text-white font-bold size-1.5">loading.....</h1>;
 
   if (!loading && !isAuthenticated) return <Navigate to="/login" replace />;
 
