@@ -6,6 +6,7 @@ import TasksPage from "./pages/TasksPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
 import TaskFormPage from "./pages/TaskFormPage";
+import QuienesSomos from "./pages/QuienesSomos";
 import Navbar from "./components/Navbar";
 
 import ProtectedRouter from "./ProtectedRouter";
@@ -19,6 +20,7 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/quienes-somos" element={<QuienesSomos />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
 

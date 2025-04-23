@@ -1,9 +1,7 @@
-//taskFormPage.jsx  frotend
 import { useForm } from "react-hook-form";
 import { useTasks } from "../context/TasksConstext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
@@ -17,12 +15,10 @@ function TaskFormPage() {
   useEffect(() => {
     if (params.id) {
       async function loadTask() {
-        if (params.id) {
-          const task = await getTask(params.id);
-          setValue("title", task.title);
-          setValue("description", task.description);
-          setValue("date", dayjs(task.date).utc().format("YYYY-MM-DD"));
-        }
+        const task = await getTask(params.id);
+        setValue("title", task.title);
+        setValue("description", task.description);
+        setValue("date", dayjs(task.date).utc().format("YYYY-MM-DD"));
       }
       loadTask();
     }
@@ -41,38 +37,60 @@ function TaskFormPage() {
     }
     navigate("/tasks");
   });
+
   return (
-    <div className="bg-zinc-800 w-full h-screen flex items-center justify-center">
-      <div className="bg-zinc-900 p-2 rounded-md w-96">
-        <h1 className="text-cyan-50 text-center ">crear tu tarea</h1>
-        <form onSubmit={onSubmit}>
-          <label htmlFor="title">title</label>
-          <input
-            type="text"
-            placeholder="Task Name"
-            {...register("title")}
-            className="w-full bg-zinc-700 text-white px-4 py2  my-2 rounded-md"
-            autoFocus
-          />
-          <label htmlFor="description">description</label>
-          <textarea
-            className="w-full bg-zinc-700 text-white px-4 py-2 my-2 rounded-md"
-            rows="3"
-            placeholder="Task Description"
-            {...register("description")}
-          ></textarea>
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            {...register("date")}
-            className="w-full bg-zinc-700 text-white px-4 py-2 my-2 rounded-md"
-          />
-          <button className="bg-cyan-500 w-full p-2 rounded-md hover:bg-cyan-600 transition-colors">
-            save
+    <div className="flex items-center justify-center min-h-screen bg-zinc-900">
+      <div className="bg-zinc-800 border-2 border-green-500 max-w-md w-full p-10 rounded-md shadow-lg">
+        <h1 className="text-3xl font-bold text-white text-center mb-6">
+          {params.id ? "Editar Tarea" : "Crear Tarea"}
+        </h1>
+        <form onSubmit={onSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="title" className="text-white block mb-1">
+              Título
+            </label>
+            <input
+              type="text"
+              placeholder="Nombre de la tarea"
+              {...register("title", { required: true })}
+              className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md"
+              autoFocus
+            />
+          </div>
+
+          <div>
+            <label htmlFor="description" className="text-white block mb-1">
+              Descripción
+            </label>
+            <textarea
+              rows="3"
+              placeholder="Describe la tarea"
+              {...register("description", { required: true })}
+              className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md"
+            ></textarea>
+          </div>
+
+          <div>
+            <label htmlFor="date" className="text-white block mb-1">
+              Fecha
+            </label>
+            <input
+              type="date"
+              {...register("date")}
+              className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-green-600 hover:bg-green-700 transition-colors text-white px-4 py-2 rounded-md font-semibold"
+          >
+            {params.id ? "Guardar Cambios" : "Crear Tarea"}
           </button>
         </form>
       </div>
     </div>
   );
 }
+
 export default TaskFormPage;
