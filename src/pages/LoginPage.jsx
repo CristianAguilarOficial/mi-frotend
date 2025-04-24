@@ -82,7 +82,14 @@ function LoginPage() {
             Ingresar
           </button>
         </form>
-
+        <div className="text-center">
+          <Link
+            to="/forgot-password"
+            className="text-green-400 hover:underline text-sm"
+          >
+            ¿Olvidaste tu contraseña?
+          </Link>
+        </div>
         <p className="text-white text-center mt-4">
           ¿No tienes una cuenta?{" "}
           <Link to="/register" className="text-green-400 hover:underline">
