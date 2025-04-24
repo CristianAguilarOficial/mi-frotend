@@ -26,11 +26,31 @@ export const AuthProvider = ({ children }) => {
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
+
+      // Si el usuario aún no ha verificado su correo
+      if (res.data.verified === false) {
+        return { success: true, verified: false };
+      }
+
+      // Usuario registrado y verificado, autenticación directa
       setUser(res.data);
       setIsAuthenticated(true);
+
+      return { success: true, verified: true };
     } catch (error) {
-      console.log(error.response);
-      setError(error.response.data);
+      console.error("Error en signup:", error.response);
+
+      const errData = error.response?.data;
+
+      // Si es un array de errores, lo pasamos directo
+      if (Array.isArray(errData)) {
+        setError(errData);
+      } else {
+        // Si es un solo mensaje, lo envolvemos en array
+        setError([errData?.message || "Ocurrió un error inesperado"]);
+      }
+
+      return { success: false, error: true };
     }
   };
 

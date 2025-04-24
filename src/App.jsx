@@ -7,6 +7,8 @@ import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
 import TaskFormPage from "./pages/TaskFormPage";
 import QuienesSomos from "./pages/QuienesSomos";
+import VerifyEmailPage from "./pages/VerifyEmailPage"; // Nueva página
+
 import Navbar from "./components/Navbar";
 
 import ProtectedRouter from "./ProtectedRouter";
@@ -23,6 +25,10 @@ function App() {
               <Route path="/quienes-somos" element={<QuienesSomos />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route
+                path="/verify-email/:token"
+                element={<VerifyEmailPage />}
+              />
 
               <Route element={<ProtectedRouter />}>
                 <Route path="/tasks" element={<TasksPage />} />
