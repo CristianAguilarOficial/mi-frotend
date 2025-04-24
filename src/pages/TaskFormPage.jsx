@@ -1,9 +1,11 @@
+// src/pages/TaskFormPage.jsx
 import { useForm } from "react-hook-form";
 import { useTasks } from "../context/TasksConstext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { TaskFormTour, ResetToursButton } from "../components/TasksTour";
 dayjs.extend(utc);
 
 function TaskFormPage() {
@@ -40,7 +42,20 @@ function TaskFormPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-zinc-900">
-      <div className="bg-zinc-800 border-2 border-green-500 max-w-md w-full p-10 rounded-md shadow-lg">
+      {/* Tour Component */}
+      <TaskFormTour />
+
+      {/* Button to reset tours (optional) */}
+      <ResetToursButton />
+
+      <div className="bg-zinc-800 border-2 border-green-500 max-w-md w-full p-10 rounded-md shadow-lg task-form-container">
+        <button
+          type="button"
+          onClick={() => navigate("/tasks")}
+          className="text-green-400 hover:text-green-200 mb-4 flex items-center text-sm font-medium"
+        >
+          ← Regresar
+        </button>
         <h1 className="text-3xl font-bold text-white text-center mb-6">
           {params.id ? "Editar Tarea" : "Crear Tarea"}
         </h1>
@@ -83,7 +98,7 @@ function TaskFormPage() {
 
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 transition-colors text-white px-4 py-2 rounded-md font-semibold"
+            className="w-full bg-green-600 hover:bg-green-700 transition-colors text-white px-4 py-2 rounded-md font-semibold task-submit-button"
           >
             {params.id ? "Guardar Cambios" : "Crear Tarea"}
           </button>

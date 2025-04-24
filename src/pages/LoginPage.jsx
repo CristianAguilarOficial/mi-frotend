@@ -82,7 +82,7 @@ function LoginPage() {
             Ingresar
           </button>
         </form>
-        <div className="text-center">
+        <div className="text-center mt-2">
           <Link
             to="/forgot-password"
             className="text-green-400 hover:underline text-sm"
