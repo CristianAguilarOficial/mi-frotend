@@ -1,9 +1,9 @@
 // src/pages/TasksPage.jsx
-import { useEffect } from "react";
-import { useTasks } from "../context/TasksConstext";
-import TaskCard from "../components/TaskCard";
-import { TasksTour, ResetToursButton } from "../components/TasksTour";
-import { NavLink } from "react-router-dom";
+import { useEffect } from 'react';
+import { useTasks } from '../context/TasksConstext';
+import TaskCard from '../components/TaskCard';
+import { TasksTour, ResetToursButton } from '../components/TasksTour';
+import { NavLink } from 'react-router-dom';
 
 function TasksPage() {
   const { getTasks, tasks } = useTasks();
@@ -36,7 +36,7 @@ function TasksPage() {
   return (
     <>
       {/* Botón Añadir Nota con diseño responsive */}
-      <div className="bg-zinc-900 py-4 px-4 flex justify-center sm:justify-start">
+      <div className=" py-4 px-4 flex justify-center sm:justify-start">
         <NavLink
           id="btn-create-task"
           to="/add-task"
@@ -46,7 +46,7 @@ function TasksPage() {
         </NavLink>
       </div>
 
-      <div className="bg-zinc-900 min-h-screen px-4 py-8">
+      <div className=" min-h-screen px-4 py-8">
         {/* Tour Component */}
         <TasksTour />
 

@@ -1,11 +1,11 @@
 // src/pages/TaskFormPage.jsx
-import { useForm } from "react-hook-form";
-import { useTasks } from "../context/TasksConstext";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import { TaskFormTour, ResetToursButton } from "../components/TasksTour";
+import { useForm } from 'react-hook-form';
+import { useTasks } from '../context/TasksConstext';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import { TaskFormTour, ResetToursButton } from '../components/TasksTour';
 dayjs.extend(utc);
 
 function TaskFormPage() {
@@ -18,9 +18,9 @@ function TaskFormPage() {
     if (params.id) {
       async function loadTask() {
         const task = await getTask(params.id);
-        setValue("title", task.title);
-        setValue("description", task.description);
-        setValue("date", dayjs(task.date).utc().format("YYYY-MM-DD"));
+        setValue('title', task.title);
+        setValue('description', task.description);
+        setValue('date', dayjs(task.date).utc().format('YYYY-MM-DD'));
       }
       loadTask();
     }
@@ -37,27 +37,27 @@ function TaskFormPage() {
     } else {
       createTask(dataValid);
     }
-    navigate("/tasks");
+    navigate('/tasks');
   });
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-zinc-900">
+    <div className="flex items-center justify-center min-h-screen ">
       {/* Tour Component */}
       <TaskFormTour />
 
       {/* Button to reset tours (optional) */}
       <ResetToursButton />
 
-      <div className="bg-zinc-800 border-2 border-green-500 max-w-md w-full p-10 rounded-md shadow-lg task-form-container">
+      <div className="bg-zinc-800 border-2 border-blue-500 max-w-md w-full p-10 rounded-md shadow-lg task-form-container">
         <button
           type="button"
-          onClick={() => navigate("/tasks")}
-          className="text-green-400 hover:text-green-200 mb-4 flex items-center text-sm font-medium"
+          onClick={() => navigate('/tasks')}
+          className="text-gray-100 hover:text-blue-200 mb-4 flex items-center text-sm font-medium"
         >
           ← Regresar
         </button>
         <h1 className="text-3xl font-bold text-white text-center mb-6">
-          {params.id ? "Editar Tarea" : "Crear Tarea"}
+          {params.id ? 'Editar Tarea' : 'Crear Tarea'}
         </h1>
         <form onSubmit={onSubmit} className="space-y-4">
           <div>
@@ -67,7 +67,7 @@ function TaskFormPage() {
             <input
               type="text"
               placeholder="Nombre de la tarea"
-              {...register("title", { required: true })}
+              {...register('title', { required: true })}
               className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md"
               autoFocus
             />
@@ -80,7 +80,7 @@ function TaskFormPage() {
             <textarea
               rows="3"
               placeholder="Describe la tarea"
-              {...register("description", { required: true })}
+              {...register('description', { required: true })}
               className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md"
             ></textarea>
           </div>
@@ -91,16 +91,16 @@ function TaskFormPage() {
             </label>
             <input
               type="date"
-              {...register("date")}
+              {...register('date')}
               className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 transition-colors text-white px-4 py-2 rounded-md font-semibold task-submit-button"
+            className="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white px-4 py-2 rounded-md font-semibold task-submit-button"
           >
-            {params.id ? "Guardar Cambios" : "Crear Tarea"}
+            {params.id ? 'Guardar Cambios' : 'Crear Tarea'}
           </button>
         </form>
       </div>

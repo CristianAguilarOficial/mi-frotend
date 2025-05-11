@@ -1,15 +1,15 @@
 // src/components/TaskCard.jsx
-import { useTasks } from "../context/TasksConstext";
-import { Link } from "react-router-dom";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
+import { useTasks } from '../context/TasksConstext';
+import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 function TaskCard({ task }) {
   const { deletask } = useTasks();
 
   return (
-    <div className="bg-[#1e1e1e] text-[#e0f7e9] w-full p-5 rounded-2xl shadow-md border-l-4 border-green-400 transition duration-300 hover:shadow-lg flex flex-col justify-between task-card">
+    <div className="bg-[#1e1e1e] text-[#e0f7e9] w-full p-5 rounded-2xl shadow-md border-l-4 border-blue-400 transition duration-300 hover:shadow-lg flex flex-col justify-between task-card">
       <header className="mb-3">
         <h1 className="text-xl font-bold break-words">🧾 {task.title}</h1>
       </header>
@@ -19,7 +19,7 @@ function TaskCard({ task }) {
       </p>
 
       <p className="text-xs text-green-400 mb-3">
-        Fecha: {dayjs(task.date).utc().format("DD/MM/YYYY")}
+        Fecha: {dayjs(task.date).utc().format('DD/MM/YYYY')}
       </p>
 
       <div className="flex flex-wrap gap-2 justify-start mt-auto">

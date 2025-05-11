@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useAuth } from "../context/authContext";
-import MiLogo from "../img/LogoBaseWeb.svg";
-import { Menu, X } from "lucide-react";
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../context/authContext';
+import MiLogo from '../img/LogoBaseWeb.svg';
+import { Menu, X } from 'lucide-react';
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
@@ -13,15 +13,15 @@ function Navbar() {
   const linkClass = (navData) =>
     `relative after:content-[''] after:block after:w-full after:h-[1px] after:transition-all ${
       navData.isActive
-        ? "after:bg-green-700 after:shadow-[0_0_6px_2px_#006400]"
-        : "after:bg-transparent hover:after:bg-white hover:after:shadow-[0_0_6px_2px_#228B22]"
+        ? 'after:bg-blue-700 after:shadow-[0_0_6px_2px_#0000FF]'
+        : 'after:bg-transparent hover:after:bg-white hover:after:shadow-[0_0_6px_2px_#1E90FF]'
     }`;
 
   return (
     <nav className="bg-zinc-800  text-white px-3 py-4 flex items-center justify-between shadow-md relative">
       {/* Logo + título */}
       <NavLink
-        to={isAuthenticated ? "/tasks" : "/"}
+        to={isAuthenticated ? '/tasks' : '/'}
         className="flex items-center gap-3"
       >
         <h1 className="text-2xl font-bold">Tasks Manager</h1>
@@ -42,8 +42,8 @@ function Navbar() {
         {isAuthenticated ? (
           <>
             <li className="text-sm">
-              Bienvenido,{" "}
-              <span className="font-semibold text-green-500">
+              Bienvenido,{' '}
+              <span className="font-semibold text-blue-500">
                 {user.username}
               </span>
             </li>
@@ -52,7 +52,7 @@ function Navbar() {
                 to="/add-task"
                 className={({ isActive }) =>
                   `hover:underline underline-offset-4 transition ${
-                    isActive ? "text-white" : "text-indigo-300 hover:text-white"
+                    isActive ? 'text-white' : 'text-indigo-300 hover:text-white'
                   }`
                 }
               >
@@ -95,7 +95,7 @@ function Navbar() {
           {isAuthenticated ? (
             <>
               <li className="text-sm">
-                Bienvenido,{" "}
+                Bienvenido,{' '}
                 <span className="font-semibold">{user.username}</span>
               </li>
               <li>
@@ -126,7 +126,7 @@ function Navbar() {
                   to="/login"
                   onClick={toggleMenu}
                   className={({ isActive }) =>
-                    isActive ? "text-white underline" : "hover:underline"
+                    isActive ? 'text-white underline' : 'hover:underline'
                   }
                 >
                   Iniciar Sesión
@@ -137,7 +137,7 @@ function Navbar() {
                   to="/register"
                   onClick={toggleMenu}
                   className={({ isActive }) =>
-                    isActive ? "text-white underline" : "hover:underline"
+                    isActive ? 'text-white underline' : 'hover:underline'
                   }
                 >
                   Registrarse
@@ -148,7 +148,7 @@ function Navbar() {
                   to="/quienes-somos"
                   onClick={toggleMenu}
                   className={({ isActive }) =>
-                    isActive ? "text-white underline" : "hover:underline"
+                    isActive ? 'text-white underline' : 'hover:underline'
                   }
                 >
                   Quienes somos

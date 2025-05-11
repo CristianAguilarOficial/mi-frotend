@@ -1,18 +1,18 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext, useEffect } from 'react';
 import {
   registerRequest,
   loginRequest,
   verifyTokenRequest,
   logoutRequest,
-} from "../api/auth";
-import Cookies from "js-cookie";
+} from '../api/auth';
+import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
       return { success: true, verified: true };
     } catch (error) {
-      console.error("Error en signup:", error.response);
+      console.error('Error en signup:', error.response);
 
       const errData = error.response?.data;
 
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
         setError(errData);
       } else {
         // Si es un solo mensaje, lo envolvemos en array
-        setError([errData?.message || "Ocurrió un error inesperado"]);
+        setError([errData?.message || 'Ocurrió un error inesperado']);
       }
 
       return { success: false, error: true };
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
       setUser(res.data);
       // Almacenar el token también en localStorage como respaldo
-      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem('isAuthenticated', 'true');
     } catch (error) {
       if (Array.isArray(error.response.data)) {
         return setError(error.response.data);
@@ -74,10 +74,10 @@ export const AuthProvider = ({ children }) => {
     try {
       await logoutRequest();
     } catch (error) {
-      console.error("Error al cerrar sesión:", error);
+      console.error('Error al cerrar sesión:', error);
     } finally {
-      Cookies.remove("token");
-      localStorage.removeItem("isAuthenticated");
+      Cookies.remove('token');
+      localStorage.removeItem('isAuthenticated');
       setIsAuthenticated(false);
       setUser(null);
     }
@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function checkLogin() {
       const cookies = Cookies.get();
-      const localAuth = localStorage.getItem("isAuthenticated");
+      const localAuth = localStorage.getItem('isAuthenticated');
 
       if (!cookies.token && !localAuth) {
         setIsAuthenticated(false);
@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
         const res = await verifyTokenRequest();
         if (!res.data) {
           setIsAuthenticated(false);
-          localStorage.removeItem("isAuthenticated");
+          localStorage.removeItem('isAuthenticated');
           setLoading(false);
           return;
         }
@@ -115,10 +115,10 @@ export const AuthProvider = ({ children }) => {
         setUser(res.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        //console.log(error);
         setIsAuthenticated(false);
         setUser(null);
-        localStorage.removeItem("isAuthenticated");
+        localStorage.removeItem('isAuthenticated');
         setLoading(false);
       }
     }

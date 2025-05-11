@@ -1,14 +1,12 @@
-import ParticlesBackground from "../components/ParticlesBackground";
-import LogoDiseño from "../img/LogoDiseañoTatiana.svg";
+import ParticlesBackground from '../components/ParticlesBackground';
+import LogoDiseño from '../img/LogoDiseañoTatiana.svg';
 
 function QuienesSomos() {
   return (
-    <section className="relative min-h-screen bg-zinc-900 pt-20 overflow-hidden">
-      <ParticlesBackground />
-
+    <section className="relative min-h-screen  pt-20 overflow-hidden">
       <div className="relative z-10 flex flex-col items-center justify-start px-4 sm:px-6 py-10">
         <div className="max-w-3xl text-center text-white">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-500 mb-6 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-500 mb-6 leading-tight">
             ¿Quiénes Somos?
           </h2>
 
@@ -37,12 +35,12 @@ function QuienesSomos() {
           </p>
 
           <p className="text-base sm:text-lg text-zinc-300">
-            El primer paso en este camino es{" "}
-            <span className="text-green-400 font-medium">Task Manager</span>,
-            una app para organizar ideas, notas y actividades diarias. Pero esto
-            es solo el comienzo. En{" "}
-            <span className="font-semibold">BasicWeb</span>, cada proyecto es
-            una oportunidad para crecer, innovar y seguir aprendiendo.
+            El primer paso en este camino es{' '}
+            <span className="text-blue-400 font-medium">Task Manager</span>, una
+            app para organizar ideas, notas y actividades diarias. Pero esto es
+            solo el comienzo. En <span className="font-semibold">BasicWeb</span>
+            , cada proyecto es una oportunidad para crecer, innovar y seguir
+            aprendiendo.
           </p>
         </div>
       </div>

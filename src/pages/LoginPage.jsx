@@ -1,9 +1,8 @@
-import { useForm } from "react-hook-form";
-import { useAuth } from "../context/authContext";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
-import ParticlesBackground from "../components/ParticlesBackground";
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../context/authContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 
 function LoginPage() {
   const {
@@ -24,13 +23,12 @@ function LoginPage() {
   });
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/tasks");
+    if (isAuthenticated) navigate('/tasks');
   }, [isAuthenticated]);
 
   return (
-    <div className="relative flex items-center justify-center h-screen overflow-hidden bg-zinc-800">
-      <div className="z-10  border-2 border-green-500 max-w-md w-full p-10 rounded-md shadow-md">
-        <ParticlesBackground />
+    <div className="relative flex items-center justify-center h-screen overflow-hidden ">
+      <div className="z-10  border-2 border-blue-500 max-w-md w-full p-10 rounded-md shadow-md">
         {signinErrors.map((error, i) => (
           <div className="bg-red-600 p-2 text-white mb-2 rounded" key={i}>
             {error}
@@ -44,7 +42,7 @@ function LoginPage() {
         <form onSubmit={onSubmit}>
           <input
             type="email"
-            {...register("email", { required: "El correo es obligatorio" })}
+            {...register('email', { required: 'El correo es obligatorio' })}
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="Correo electrónico"
             autoComplete="email"
@@ -55,9 +53,9 @@ function LoginPage() {
 
           <div className="relative">
             <input
-              type={mostrarContraseña ? "text" : "password"}
-              {...register("password", {
-                required: "La contraseña es obligatoria",
+              type={mostrarContraseña ? 'text' : 'password'}
+              {...register('password', {
+                required: 'La contraseña es obligatoria',
               })}
               className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2 pr-10"
               placeholder="Contraseña"
@@ -77,7 +75,7 @@ function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-green-600 text-white px-4 py-2 rounded-md my-2 hover:bg-green-700 transition"
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded-md my-2 hover:bg-blue-700 transition"
           >
             Ingresar
           </button>
@@ -85,14 +83,14 @@ function LoginPage() {
         <div className="text-center mt-2">
           <Link
             to="/forgot-password"
-            className="text-green-400 hover:underline text-sm"
+            className="text-blue-400 hover:underline text-sm"
           >
             ¿Olvidaste tu contraseña?
           </Link>
         </div>
         <p className="text-white text-center mt-4">
-          ¿No tienes una cuenta?{" "}
-          <Link to="/register" className="text-green-400 hover:underline">
+          ¿No tienes una cuenta?{' '}
+          <Link to="/register" className="text-blue-400 hover:underline">
             Regístrate
           </Link>
         </p>

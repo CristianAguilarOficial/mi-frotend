@@ -1,10 +1,9 @@
 // src/pages/ResetPasswordPage.jsx
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { resetPasswordRequest, verifyResetTokenRequest } from "../api/auth";
-import ParticlesBackground from "../components/ParticlesBackground";
-import { Eye, EyeOff } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { resetPasswordRequest, verifyResetTokenRequest } from '../api/auth';
+import { Eye, EyeOff } from 'lucide-react';
 
 function ResetPasswordPage() {
   const { token } = useParams();
@@ -46,17 +45,17 @@ function ResetPasswordPage() {
       setLoading(true);
       await resetPasswordRequest(token, data.password);
       setSuccess(true);
-      setMessage("Tu contraseña ha sido actualizada correctamente.");
+      setMessage('Tu contraseña ha sido actualizada correctamente.');
 
       // Redireccionar al login después de 3 segundos
       setTimeout(() => {
-        navigate("/login");
+        navigate('/login');
       }, 3000);
     } catch (error) {
       setSuccess(false);
       setMessage(
         error.response?.data?.message ||
-          "Ha ocurrido un error al restablecer la contraseña."
+          'Ha ocurrido un error al restablecer la contraseña.'
       );
     } finally {
       setLoading(false);
@@ -74,8 +73,6 @@ function ResetPasswordPage() {
   return (
     <div className="relative flex items-center justify-center h-screen overflow-hidden bg-zinc-800">
       <div className="z-10 border-2 border-green-500 max-w-md w-full p-10 rounded-md shadow-md">
-        <ParticlesBackground />
-
         <h1 className="text-3xl font-bold text-white text-center mb-6">
           Restablecer Contraseña
         </h1>
@@ -90,7 +87,7 @@ function ResetPasswordPage() {
         {message && (
           <div
             className={`p-3 mb-4 rounded-md ${
-              success ? "bg-green-600" : "bg-red-600"
+              success ? 'bg-green-600' : 'bg-red-600'
             } text-white`}
           >
             {message}
@@ -101,12 +98,12 @@ function ResetPasswordPage() {
           <form onSubmit={onSubmit}>
             <div className="relative my-2">
               <input
-                type={showPassword ? "text" : "password"}
-                {...register("password", {
-                  required: "La contraseña es obligatoria",
+                type={showPassword ? 'text' : 'password'}
+                {...register('password', {
+                  required: 'La contraseña es obligatoria',
                   minLength: {
                     value: 6,
-                    message: "La contraseña debe tener al menos 6 caracteres",
+                    message: 'La contraseña debe tener al menos 6 caracteres',
                   },
                 })}
                 className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md pr-10"
@@ -127,12 +124,12 @@ function ResetPasswordPage() {
 
             <div className="relative my-2">
               <input
-                type={showConfirmPassword ? "text" : "password"}
-                {...register("confirmPassword", {
-                  required: "Confirma tu contraseña",
+                type={showConfirmPassword ? 'text' : 'password'}
+                {...register('confirmPassword', {
+                  required: 'Confirma tu contraseña',
                   validate: (val) => {
-                    if (watch("password") !== val) {
-                      return "Las contraseñas no coinciden";
+                    if (watch('password') !== val) {
+                      return 'Las contraseñas no coinciden';
                     }
                   },
                 })}
@@ -159,7 +156,7 @@ function ResetPasswordPage() {
               className="w-full bg-green-600 text-white px-4 py-2 rounded-md my-2 hover:bg-green-700 transition disabled:opacity-70"
               disabled={loading}
             >
-              {loading ? "Actualizando..." : "Actualizar contraseña"}
+              {loading ? 'Actualizando...' : 'Actualizar contraseña'}
             </button>
           </form>
         )}
