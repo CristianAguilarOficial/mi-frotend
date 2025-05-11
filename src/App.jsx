@@ -11,6 +11,7 @@ import VerifyEmailPage from './pages/VerifyEmailPage'; // Nueva página
 import Navbar from './components/Navbar';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import NotFound from './pages/NotFound';
 import ParticlesBackground from './components/ParticlesBackground';
 
 import ProtectedRouter from './ProtectedRouter';
@@ -49,6 +50,9 @@ function App() {
                   <Route path="/tasks/:id" element={<TaskFormPage />} />
                   <Route path="/profile" element={<ProfilePage />} />
                 </Route>
+
+                {/* Ruta 404 - debe ser la última */}
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
           </main>
