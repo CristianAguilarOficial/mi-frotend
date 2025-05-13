@@ -49,6 +49,9 @@ function RegisterPage() {
               Hemos enviado un correo de verificación a tu dirección de email.
               Por favor, verifica tu correo para activar tu cuenta.
             </p>
+            <p className="bg-amber-50 m-4  text-red-600 rounnded-md p-2">
+              Revisa el buzon de spam
+            </p>
             <Link
               to="/login"
               className="bg-blue-500 hover:bg-green-600 transition-colors text-white px-6 py-2 rounded-md"

@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-import BannerSinBackend from '../components/BannerSinBackend';
 
 function HomePage() {
   return (
     <>
-      <BannerSinBackend mensaje="El servidor del backend esta suspendido por falta de pago || próximamente lo renovó 😂 update:20-May-2025" />
       <div className="flex flex-col min-h-screen  ">
         <main className="flex-grow flex items-center justify-center px-6">
           <div className="max-w-2xl text-center">
