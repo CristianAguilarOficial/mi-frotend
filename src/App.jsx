@@ -13,6 +13,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import NotFound from './pages/NotFound';
 import ParticlesBackground from './components/ParticlesBackground';
+import BannerSinBackend from './components/BannerSinBackend'; // Importa el nuevo componente BannerSinBackground
 
 import ProtectedRouter from './ProtectedRouter';
 import { TasksProvider } from './context/TasksConstext';
@@ -26,6 +27,7 @@ function App() {
             <div className="absolute inset-0 backdrop-blur-xs z-0" />
             <div className="relative z-10">
               <Navbar />
+            <BannerSinBackend  mensaje='los servidores del backend se apagaron por que se acabo la membrecía gratuita'/>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/quienes-somos" element={<QuienesSomos />} />
